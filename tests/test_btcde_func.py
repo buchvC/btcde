@@ -18,8 +18,9 @@ class TestBtcdeAPIDocu(TestCase):
     def sampleData(self, file):
         '''Retrieve sample data from json files.'''
         filepath = 'tests/resources/{}.json'.format(file)
-        data = json.load(open(filepath))
-        return data
+        with open(filepath) as json_file:
+            data = json.load(json_file)
+            return data
 
     def sortParams(self, url, params={}):
         '''To sort params for url string.'''
@@ -540,8 +541,9 @@ class TestBtcdeExceptions(TestCase):
     def sampleData(self, file):
         '''Retrieve sample data from json files.'''
         filepath = 'tests/resources/{}.json'.format(file)
-        data = json.load(open(filepath))
-        return data
+        with open(filepath) as json_file:
+            data = json.load(json_file)
+            return data
 
     def setUp(self):
         self.XAPIKEY = 'f00b4r'
