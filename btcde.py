@@ -18,6 +18,7 @@ logging.basicConfig()
 log = logging.getLogger(__name__)
 requests_log = logging.getLogger("requests.packages.urllib3")
 requests_log.propagate = True
+ssl_verify = True
 
 __version__ = '4.0'
 
@@ -142,13 +143,13 @@ class Connection(object):
     def send_request(self, url, method, header, encoded_string):
         if method == 'GET':
             r = requests.get(url, headers=(header),
-                             stream=True, verify=False)
+                             stream=True, verify=ssl_verify)
         elif method == 'POST':
             r = requests.post(url, headers=(header), data=encoded_string,
-                              stream=True, verify=False)
+                              stream=True, verify=ssl_verify)
         elif method == 'DELETE':
             r = requests.delete(url, headers=(header),
-                                stream=True, verify=False)
+                                stream=True, verify=ssl_verify)
         return r
 
     def APIConnect(self, method, params):
